@@ -1,3 +1,4 @@
+`timescale 1ps/1ps
 
 
 /*Author: Zhuxu 
@@ -217,5 +218,13 @@ assign  o_wb_data=  i_wb_adr==adr_ctrl?{8'h0,ctrl}:
             i_wb_adr==adr_period?period:
             i_wb_adr==adr_DC?DC:0;
  
- 
+
+`ifdef COCOTB_SIM
+initial begin
+  $dumpfile ("PWM.vcd");
+  $dumpvars (0, PWM);
+  #1;
+end
+`endif
+    
 endmodule
